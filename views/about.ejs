@@ -1,0 +1,201 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/about-page/about.css">
+</head>
+<body class="overflow-x-hidden overflow-auto">
+
+  <div class=" page1 w-100% h-100% flex flex-col">
+    <div class="flex select-none justify-between items-center gap-4 md:flex-row md:items-start md:gap-8 lg:gap-12 p-5">
+      <div id="navbar" class="flex flex-col gap-4 md:flex-row md:items-center">
+        <ul class="flex gap-8">
+          
+          <span class="hover-animation"><form action="/about" method="post"><button>ABOUT</button></form></span>
+          <span class="hover-animation"><form action="/shop" method="get"><button>SHOP</button></form></span>
+          <span class="hover-animation"><form action="/stores" method="post"><button>STORES</button></form></span>
+        </ul>
+      </div>
+    
+      <div class="flex flex-col items-center gap-2 md:flex-row md:gap-4 lg:gap-8">
+        <button formaction="/home" formmethod="post">
+          <div class="title">
+            <h3 class="text-3xl font-bold">THE BREAD</h3>
+            <div class="text-3xl font-bold">BASKET</div>
+          </div>  
+        </button>
+      </div>
+    
+      <div id="navbar" class="flex flex-col gap-4 md:flex-row md:items-center justify-end">
+        <ul class="flex gap-8 ">
+          <li class="hover-animation"><form action="/basket" method="get"><button>BASKET</button></form></li>
+          <li class="hover-animation"onclick="openForm()">LOGIN</li>
+          <!-- hover Login Page -->
+          <div id="myForm" class="form-container hidden  rounded-xl select-none my-14  mx-36 ">
+            <div class=" z-10 absolute w-full flex justify-end "><span onclick="close_Form()" class="material-symbols-outlined close-btn rounded-md text-3xl px-3 py-2">close</span></div>
+            <div class="pl-16 w-3/6 h-full">
+              <div class="flex flex-col items-center gap-2 md:flex-row md:gap-4 lg:gap-8">
+                <a href="/home">
+                  <div class="title">
+                    <h3 class="text-3xl font-bold">THE BREAD</h3>
+                    <div class="text-3xl font-bold">BASKET</div>
+                  </div>  
+                </a>
+              </div>
+                <div class="log font-extralight pl-4 pt-5 text-4xl">
+                    <h1>LOGIN</h1>
+                </div>
+                <div class="text-log ml-4 mt-2 text-xl">
+                    Sign in with your email address and Password
+                </div>
+                <form>
+                    <div class="ml-4 mt-16">
+                        <input type="email" placeholder="Email address" class="border-none w-52 bg-transparent placeholder:text-inherit outline-none">
+                        <div class="email1-line mt-2 h-px rounded-xl w-60"></div>
+                    </div>
+                    <div class="ml-4 mt-5">
+                        <input type="password" placeholder="Password" class="border-none w-52 bg-transparent placeholder:text-inherit outline-none">
+                        <div class="email1-line mt-2 h-px rounded-xl w-60"></div>
+                    </div>
+                    <div class=" ml-4 mt-5 ">
+                        <button class="logbtn px-14 text-center py-2 rounded-xl">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+        </ul>
+      </div>
+    </div>
+    
+    
+
+
+<!-- page-1 -->
+
+
+
+
+<div class=" body-text w-screen h-fit flex flex-col text-6xl justify-center pt-20 items-center ">
+      <div class="text-1 w-3/4 h-fit pr-40">
+        On a restaurant table, a humble bread basket might seem like a simple accessory.
+      </div>
+      
+      <div class="text-1 w-3/4 h-fit pr-40">
+        But woven within its purpose lies a deeper story. It's the vessel that tempts with warm rolls and crusty baguettes, the initiator of pre-dinner conversation as hands reach for shared slices. 
+      </div>
+      <div class="text-1 w-3/4 h-fit pr-40">
+        The bread basket is a silent invitation to gather, to break bread together, and savor the simple pleasure of a meal about to begin.
+      </div>
+      </h1>
+      <!-- Founder -->
+      <div class="flex w-screen justify-end">
+        <img class="founder mr-10 shadow-black shadow-2xl" src="../Images/founder.png" alt=""/>
+      </div>
+      
+    </div>
+    
+  </div>
+  
+</div>
+  
+  <!-- Footer -->
+  
+  <!-- footer -->
+     <footer class="grandmain pt-32">
+       <div class="grandbox">
+         
+         <div class="grand pt-10 h-fit w-screen flex justify-center">
+           <div class="main flex flex-row">
+             <div class="box1 border-2  flex flex-col items-center justify-center border-white">
+               <div class="text-box1 pl-10">
+                 <h1 class=" font-bold">Newsletter</h1>
+                </div>
+                <div class="text-box2">
+                  <h1 class="stay-in pl-10 text-4xl">Stay in Touch</h1>
+                </div>
+            <div class="text-box3 pl-10 flex flex-row pt-3">
+              <input type="email" class="email mr-2 w-52" placeholder="Email Address"/>
+              <h1>GO</h1>
+            </div>
+            <div class="text-box4 pl-10">
+              <div class="email-line mt-2 h-px rounded-xl w-60"></div>
+            </div>
+          </div>
+
+          <div class="box3 border-2 flex items-center justify-center border-white">
+            <div>
+              <div class="text-xl text-center font-bold">
+                <h1>TAKE YOUR TIME</h1>
+              </div>
+              <div class="box3-text text-4xl">
+                <h1>Enjoy your Bread</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        <!-- Main title footer -->
+
+        
+        <div class="mtgrand py-10 h-fit flex justify-center">
+          <div class="main flex flex-row w-screen justify-between ">
+            <div class="box1 flex flex-col items-start justify-center">
+              <div class="text-box1 w-40 flex">
+                <h1 class="font-bold w-40 pl-10">Bread,Cake,<br>Pasteries</h1>
+              </div>
+            </div>
+            <div class="box2 flex flex-col align-baseline justify-center">
+              <div>
+                <div class="footer-title select-none">
+                  <h3 class="text-5xl font-bold">THE BREAD</h3>
+                  <div class="text-5xl font-bold">BASKET</div>
+                </div>  
+              </div>
+            </div>
+            <div class="box3 flex items-center justify-end pr-10">
+              <div>
+                <div class="text-center font-bold">
+                  <h1>SPECIALITY BREAD</h1>
+                </div>
+                <div class="font-bold">
+                  <h1>OPEN 20/5</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pl-10 h-10 w-screen">
+
+          <div class="long-line"></div>
+        </div>
+        <div class="last-line text-xs h-14 w-screen">
+          <div class="pl-10 flex flex-row justify-between">
+            <ul class="flex flex-row gap-10">
+              <li class="hover-animation">Cookies</li>
+              <li class="hover-animation">Terms & Condition</li>
+              <li class="hover-animation">Shipping & Return Policy</li>
+            </ul>
+            <div class="pr-10">©TheBreadBasket</div>
+          </div>
+
+        </div>
+      </div>
+     </footer>
+
+
+ 
+     
+     
+     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" integrity="sha512-1PKqXBz2ju2JcAerHKL0ldg0PT/1vr3LghYAtc59+9xy8e19QEtaNUyt1gprouyWnpOPqNJjL4gXMRMEpHYyLQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+     
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                <script src="/about-page/about.js"></script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: brand ;
+    src: url("../Font/Brand.ttf");
+}
+*,*::before,*::after{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.font-text{
+    font-family: brand;
+}
+body{
+    background-color: #F8F4E1;
+    user-select: text;
+}
+.title{
+    font-family: brand;
+    text-align: center;
+    justify-content: center;
+    color: #543310;
+
+}
+.s-line{
+    height: 1px;
+    width: 100%;
+    background-color: #543310;
+}
+
+.s-line2{
+  height: 1px;
+  width: 100%;
+  background-color: #543310;
+}
+.s-line3{
+  height: 1px;
+  width: 100%;
+  background-color: #543310;
+}
+
+.hover-animation {
+    display: inline-block;
+    position: relative;
+  }
+  
+  .hover-animation::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: #543310;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+  
+  .hover-animation:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+
+.shop-text{
+  height:155px ;
+}
+
+
+
+
+
+  
+/* Footer */
+.grand{
+    color: #543310;
+  }
+  .main{
+    width: 1129px;
+    height: 180px;
+  }
+  
+  .box1{
+    width: 100%;
+    height: 189px;
+  }
+  .box2{
+    width: 100%;
+    height: 189px;
+  }
+  .box3{
+    width: 100%;
+    height: 189px;
+  }
+  .email::placeholder{
+    border:none;
+    outline: none;
+    color: #543310;
+  }
+  .email{
+    background-color: #F8F4E1;
+    border:none;
+    outline: none;
+    color: #543310;
+  }
+  .email-line{
+    background-color: #543310;
+  }
+  .stay-in{
+    font-family: ab;
+  }
+  .text-box1{
+    width: 100%;
+  }
+  .text-box2{
+    width: 100%;
+  }
+  .text-box3{
+    width: 100%;
+  }
+  .text-box4{
+    width: 100%;
+  }
+  .box2-text{
+    font-family: ab;
+  }
+  .box3-text{
+    font-family: ab;
+  }
+  .mtgrand{
+    width: 100%;
+  }
+  .long-line{
+    height: 1px;
+    border-radius:12px;
+    width: 1330px;
+    background-color: #543310;
+  }
+  

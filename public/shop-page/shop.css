@@ -1,0 +1,167 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,*::before,*::after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html{
+    scroll-behavior: smooth;
+}
+@font-face {
+    font-family: brand ;
+    src: url("../Font/Brand.ttf");
+}
+
+@font-face {
+    font-family: boska-bold ;
+    src: url("../Font/Boska-Bold.woff");
+}
+
+@font-face {
+    font-family: boska-medium ;
+    src: url("../Font/Boska-Medium.ttf");
+}
+
+@font-face {
+    font-family: boska-medium-italic ;
+    src: url("../Font/Boska-MediumItalic.ttf");
+}
+
+.font-text{
+    font-family: brand;
+}
+body{
+    background-color: #F8F4E1;
+    user-select: text;
+}
+
+/* Page:1 */
+.title{
+    font-family: brand;
+    text-align: center;
+    justify-content: center;
+    color: #543310;
+
+}
+
+.tagline{
+    font-family: brand;
+    align-items: center;
+
+}
+.scroll-down{
+    color: #543310;
+}
+#navbar{
+    color: #543310;
+}
+
+
+.hover-animation {
+    display: inline-block;
+    position: relative;
+  }
+  
+  .hover-animation::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: #543310;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+  
+  .hover-animation:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+
+
+
+
+
+/* Login page Css */
+
+.form-container{
+  background-color: #543310;
+  width: 80%;
+  height: 600px;
+  position: fixed;
+  z-index: 9;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-image: url(../Images/bread-l.jpg);
+  background-size:100% ;
+  color: #F8F4E1;
+}
+
+.title1{
+  font-family: brand;
+  text-align: center;
+  color: #F8F4E1;
+
+}
+.email1-line{
+
+  background-color: #F8F4E1;
+}
+.text-log{
+  color: #F8F4E1;
+}
+body{
+  background-color: #F8F4E1;
+}
+.btn{
+  color: #543310;
+}
+.logbtn{
+  background-color: #AF8F6F;
+  color: #F8F4E1;
+}
+.close-btn:hover{
+  transition: 1s;
+  background-color: #AF8F6F;
+}
+
+
+
+
+.title{
+    font-family: brand;
+    text-align: center;
+    justify-content: center;
+
+}
+
+
+
+
+
+.image-container{
+    height: 450px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
