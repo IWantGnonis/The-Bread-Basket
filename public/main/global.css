@@ -27,6 +27,7 @@ body::-webkit-scrollbar{
     text-align: center;
     justify-content: center;
     color: #543310;
+    display: flex;
 
 }
 
@@ -70,7 +71,7 @@ body::-webkit-scrollbar{
 
 
 
-/* Button */
+/*Login Button */
 
 
 
@@ -151,10 +152,10 @@ body::-webkit-scrollbar{
     padding: 0.5rem 1rem;
     font-size: 0.9rem;
   }
-}
+} 
 
 
-.navbar{
+ .navbar{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -168,99 +169,219 @@ body::-webkit-scrollbar{
   z-index: 1000;
 }
 
+/* Navbar-section */
+.navbar-section{
+  background-color: #F8F4E1;
 
-.hamburger-menu {
+}
+.navbar-section.active{
+  border: none;
+  border-width: none;
+}
+
+
+
+
+
+
+
+
+
+
+.hamburger-button{
+  background-color:#543310;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  width: 30px;
-  height: 20px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  position: fixed;
-  top: 20px;
-  left: 80px;
-  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+.hamburger-icon{
+  background-color: #F8F4E1;
+  width: 50px;
+  height: 2.4px;
+  border-radius: 5px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+
+}
+.hamburger-icon:nth-child(1) {
+  margin-bottom : 10px;
 }
 
-.hamburger-menu span {
-  width: 100%;
-  height: 2px;
-  background-color: black;
-  transition: all 0.3s ease;
+.hamburger-button.active .hamburger-icon:nth-child(1) {
+  transform: rotate(45deg) translate(4.8px, 5px); /* Rotate to form the top part of the 'X' */
 }
 
-/* Optional: Add hover effect */
-.hamburger-menu:hover span {
-  background-color: #666;
+.hamburger-button.active .hamburger-icon:nth-child(2) {
+  transform: rotate(-45deg) translate(3.5px, -4.5px); /* Rotate to form the bottom part of the 'X' */
 }
 
-
-
-
-
-
-
-
-
-
-
-/* Menu Overlay Styles */
 .menu-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #543310; /* Cream background color */
-  clip-path: circle(0% at top left);
-  transition: clip-path 0.8s ease-in-out;
-  z-index: 999;
+  background-color: #F8F4E1;
+  z-index: 40; /* Adjusted to be below navbar z-index of 50 */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  pointer-events: none;
 }
 
 .menu-overlay.active {
-  clip-path: circle(150% at top left);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
 }
-
 .menu-content {
-  position: relative;
   height: 100%;
   display: flex;
-  color: #F8F4E1; /* Light cream color */
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8rem;
+
 }
 
-.menu-content nav ul {
-  list-style: none;
-  padding: 0;
+.menu-title {
+  font-family: brand;
+  color: #543310;
+  text-align: center;
 }
 
-.menu-content nav ul li {
+.menu-title h1 {
   font-size: 4rem;
-  margin: 2rem 0;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  font-weight: bold;
+  line-height: 1.1;
+}
+.menu-list {
+  list-style: none;
+  text-align: center;
+  padding-top: 6rem;
+}
+.menu-list li a {
+font-family: brand;
+font-size: 5rem;
+color: #543310;
+text-decoration: none;
+position: relative;
+transition: all 0.3s ease;
 }
 
-.menu-overlay.active .menu-content nav ul li {
-  opacity: 1;
-  transform: translateY(0);
+.menu-list li a:hover {
+color: #b28571;
 }
 
-/* Modify hamburger menu for active state */
-.hamburger-menu.active span:first-child {
-  transform: rotate(45deg) translate(5px, 5px);
+.menu-list li a::after {
+content: '';
+position: absolute;
+width: 0;
+height: 2px;
+bottom: -5px;
+left: 50%;
+background-color: #543310;
+transition: all 0.3s ease;
 }
 
-.hamburger-menu.active span:nth-child(2) {
-  opacity: 0;
+.menu-list li a:hover::after {
+width: 100%;
+left: 0;
 }
 
-.hamburger-menu.active span:last-child {
-  transform: rotate(-45deg) translate(5px, -5px);
+.title.active{
+display: none;
 }
+.navbar.active{
+border: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.main-scroll{
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.bread-title {
+  position: absolute;
+  z-index: 100;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #543310;
+  font-size: 9rem;
+  font-weight: bold;
+  text-align: center;
+  pointer-events: none;
+}
+
+.scrollimg1, .scrollimg2 {
+  position: absolute;
+  width: 300px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.scrollimg1 {
+  left: 20%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.scrollimg2 {
+  right: 20%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -270,7 +391,7 @@ body::-webkit-scrollbar{
 
 /* Login page Css */
 
-.form-container{
+/* .form-container{
   background-color: #543310;
   width: 80%;
   height: 600px;
@@ -311,7 +432,7 @@ body{
 .close-btn:hover{
   transition: 1s;
   background-color: #AF8F6F;
-}
+} */
 
 
 
@@ -387,10 +508,6 @@ body{
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
   }
   
-  .page-5{
-    font-family:Playfair Display;
-    font-size:20vw;
-  }
 
 
 
@@ -408,9 +525,7 @@ body{
 
 
 
-  
-/* page-4 */
-
+/*   
 .works {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -530,6 +645,55 @@ body{
 }
 
 
+ */
+
+
+
+
+
+
+
+
+
+/* Page5 */
+.scroll-section {
+  perspective: 1000px;
+}
+
+.left-images img, .right-images img {
+  opacity: 1;
+  transform: translateY(100px);
+  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.left-images img.visible, .right-images img.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-text {
+  transform: translateY(100vh);
+  transition: transform 0.1s linear;
+}
+
+/* Add subtle gradient overlay to images */
+.left-images img, .right-images img {
+  position: relative;
+}
+
+.left-images img::after, .right-images img::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2));
+  border-radius: 0.75rem;
+}
+
+
+
 
 
 
@@ -602,7 +766,8 @@ body{
 }
 .long-line{
   height: 1px;
+  width: 100%;
   border-radius:12px;
-  width: 1330px;
   background-color: #543310;
 }
+

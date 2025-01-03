@@ -2,33 +2,19 @@ gsap.registerPlugin(ScrollTrigger);
 
 
 
-gsap.from("#navbar",{
-    opacity:0,
-    duration:2,
-    delay:1
-})
-
-
 gsap.from(".animation",{
     y:100,
-    duration:2,
-    delay:1.5,
+    duration:0.3,
+    delay:0.4,
     stagger:1
 })
-gsap.from(".scroll-down",{
-    y:190,
-    duration:2,
-    delay:5.5,
-})
-//Login page js to open and close the login
-function openForm() {
-  document.getElementById("myForm").style.display = "block";
 
-}
-function close_Form() {
-  document.getElementById("myForm").style.display = "none";
 
-}
+
+  //Menu
+
+
+
 
 
 
@@ -60,18 +46,134 @@ gsap.to("#texts",{
         end:"top -100%",
         pin:true,
         pinSpacing:"texts"
-    }
-})
-gsap.from(".left-img",{
-    y:100,
-    scrollTrigger:{
+      }
+    })
+    gsap.from(".left-img",{
+      y:100,
+      scrollTrigger:{
         trigger:".left-img",
         scroller:"body",
         scrub:1,
         start:"top 50%",
         end:"bottom 50%",
-    }
+      }
 })
+
+
+
+
+
+
+
+
+
+
+  //Page4 Add animation for the bread title
+  document.addEventListener('DOMContentLoaded', () => {
+    // Create a timeline for the bread title parallax effect
+    gsap.to('.bread-title', {
+      scrollTrigger: {
+        trigger: '.main-scroll',
+        start: 'top top',
+        end: 'bottom center',
+        scrub: "true",
+        // markers:"true", // Enable for debugging
+      },
+      y: 100, // Adjust this value to control scroll distance
+      opacity: 0,
+      ease: 'none'
+    });
+  
+    // Optional: Add parallax effect to images as well
+    gsap.to('.scrollimg1', {
+      scrollTrigger: {
+        trigger: '.main-scroll',
+        start: 'top center',
+        end: 'bottom center',
+        scrub: true
+      },
+      y: 50,
+      x:-50,
+      ease: 'none'
+    });
+  
+    gsap.to('.scrollimg2', {
+      scrollTrigger: {
+        trigger: '.main-scroll',
+        start: 'top center',
+        end: 'bottom center',
+        scrub: true
+      },
+      y: -50,
+      x:50,
+      ease: 'none'
+    });
+  });
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Page5
+document.addEventListener('DOMContentLoaded', () => {
+  const section = document.querySelector('.scroll-section');
+  const scrollText = document.querySelector('.scroll-text');
+  const leftImages = document.querySelectorAll('.left-images img');
+  const rightImages = document.querySelectorAll('.right-images img');
+
+  const handleScroll = () => {
+    const rect = section.getBoundingClientRect();
+    const scrollProgress = -rect.top / (rect.height - window.innerHeight);
+    
+    // Only update when section is in view
+    if (rect.top <= 0 && rect.bottom >= 0) {
+      // Move text based on scroll position
+      const textMove = Math.max(-100, 100 - (scrollProgress * 200));
+      scrollText.style.transform = `translateY(${textMove}vh)`;
+
+      // Show images when they come into view
+      // leftImages.forEach((img, index) => {
+      //   if (scrollProgress > 0.1 + (index * 0.2)) {
+      //     img.classList.add('visible');
+      //   } else {
+      //     img.classList.remove('visible');
+      //   }
+      // });
+
+      // rightImages.forEach((img, index) => {
+      //   if (scrollProgress > 0.2 + (index * 0.2)) {
+      //     img.classList.add('visible');
+      //   } else {
+      //     img.classList.remove('visible');
+      //   }
+      // });
+    }
+  };
+
+  // Initial check
+  handleScroll();
+
+  // Add scroll event listener
+  window.addEventListener('scroll', handleScroll);
+});
+
+
+
+
+
+
+
 /*Page-4*/
 /*
 var hover1=document.querySelector(".hover-set-1")
@@ -127,56 +229,81 @@ hover3.addEventListener("mouseleave",function(){
 })*/
 
 
-const elementsWorks = document.querySelectorAll(".item-work");
-const slidePicWorks = document.querySelector("#gallery-work");
-const slidePicsWorks = document.querySelector("#work-images");
+// const elementsWorks = document.querySelectorAll(".item-work");
+// const slidePicWorks = document.querySelector("#gallery-work");
+// const slidePicsWorks = document.querySelector("#work-images");
 
-gsap.set(slidePicWorks, { autoAlpha: 0 });
+// gsap.set(slidePicWorks, { autoAlpha: 0 });
 
-elementsWorks.forEach((element, index) => {
-  element.addEventListener("mouseenter", function () {
-    gsap.to(slidePicsWorks, {
-      marginTop: `-${280 * index}px`,
-      duration: 0.2,
-      ease: "power1",
-    });
-  });
+// elementsWorks.forEach((element, index) => {
+//   element.addEventListener("mouseenter", function () {
+//     gsap.to(slidePicsWorks, {
+//       marginTop: `-${280 * index}px`,
+//       duration: 0.2,
+//       ease: "power1",
+//     });
+//   });
 
-  element.addEventListener("mouseleave", function () {
-    gsap.to(element, { color: "initial", duration: 0.2, ease: "power1" });
-  });
-});
+//   element.addEventListener("mouseleave", function () {
+//     gsap.to(element, { color: "initial", duration: 0.2, ease: "power1" });
+//   });
+// });
 
-window.addEventListener("mousemove", function (e) {
-  gsap.to(slidePicWorks, {
-    top: `${e.clientY}px`,
-    left: `${e.clientX}px`,
-    xPercent: -20,
-    yPercent: -45,
-    duration: 0.2,
-    ease: "power1",
-  });
-});
+// window.addEventListener("mousemove", function (e) {
+//   gsap.to(slidePicWorks, {
+//     top: `${e.clientY}px`,
+//     left: `${e.clientX}px`,
+//     xPercent: -20,
+//     yPercent: -45,
+//     duration: 0.2,
+//     ease: "power1",
+//   });
+// });
 
-document
-  .querySelector(".items-works")
-  .addEventListener("mouseenter", function () {
-    gsap.to(slidePicWorks, {
-      autoAlpha: 1,
-      duration: 0.2,
-      ease: "power1",
-    });
-  });
+// document
+//   .querySelector(".items-works")
+//   .addEventListener("mouseenter", function () {
+//     gsap.to(slidePicWorks, {
+//       autoAlpha: 1,
+//       duration: 0.2,
+//       ease: "power1",
+//     });
+//   });
 
-document
-  .querySelector(".items-works")
-  .addEventListener("mouseleave", function () {
-    gsap.to(slidePicWorks, {
-      autoAlpha: 0,
-      duration: 0.2,
-      ease: "power1",
-    });
-  });
+// document
+//   .querySelector(".items-works")
+//   .addEventListener("mouseleave", function () {
+//     gsap.to(slidePicWorks, {
+//       autoAlpha: 0,
+//       duration: 0.2,
+//       ease: "power1",
+//     });
+//   });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -241,17 +368,5 @@ window.onpopstate = function () {
 
 
 // Add this to your script file
-document.querySelector('.hamburger-menu').addEventListener('click', function() {
-  this.classList.toggle('active');
-  document.querySelector('.menu-overlay').classList.toggle('active');
-});
-
-// Optional: Close menu when clicking a link
-document.querySelectorAll('.menu-content a').forEach(link => {
-  link.addEventListener('click', () => {
-    document.querySelector('.hamburger-menu').classList.remove('active');
-    document.querySelector('.menu-overlay').classList.remove('active');
-  });
-});
 
 

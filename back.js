@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const bcrypt = require('bcrypt')
 
-const User = require('./models/User');
+const User = require('./models/user');
 
 const Product = require('./models/bread-schema');
 const Cake = require('./models/cakes-schema');
@@ -28,7 +28,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/store',(rep,res)=>{
+app.get('/stores',(rep,res)=>{
   res.render("store");
 });
 app.get('/about',(rep,res)=>{
@@ -47,6 +47,27 @@ app.post('/', (req, res) => {
 app.get('/', (req, res) => {
   res.render('index');
 });
+app.get('/shop', async (req, res) => {
+  try {
+    const breads = await Product.find({});
+    const cakes = await Cake.find({});
+    const pies = await Pie.find({});
+    const pasteries = await Pastery.find({});
+    const desserts = await Dessert.find({});
+    
+    res.render('shop', {
+      breads,
+      cakes, 
+      pies,
+      pasteries,
+      desserts
+    });
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    res.status(500).send('Error loading shop page');
+  }
+});
+
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/simple-cart', {
   useNewUrlParser: true,
@@ -61,37 +82,12 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Home Page
-app.get('/shop', async (req, res) => {
-  const products = await Product.find();
-  const Cakes = await Cake.find();
-  const Pasterys = await Pastery.find();
-  const Pies = await Pie.find();
-  const Desserts = await Dessert.find();
-
-  res.render('shop/shop', { products, Cakes, Pasterys, Pies, Desserts});
-});
 
 // Add to Cart
-app.post('/add-to-cart/:id', async (req, res) => {
-  const productId = req.params.id;
-  const cart = await Cart.findOne() || new Cart({ items: [] });
 
-  const item = cart.items.find(i => i.productId.equals(productId));
-  if (item) {
-    item.quantity += 1;
-  } else {
-    cart.items.push({ productId, quantity: 1 });
-  }
-
-  await cart.save();
-  res.redirect('/shop');
-});
 
 // View Cart
-app.get('/basket', async (req, res) => {
-  const cart = await Cart.findOne().populate('items.productId');
-  res.render('basket', { cart });
-});
+
 
 //Remove Items From Cart
 
@@ -208,3 +204,97 @@ app.post('/signin', async (req, res) => {
 
 
 app.listen(3000)
+
+// Add to Cart route
+app.post('/add-to-cart', async (req, res) => {
+  try {
+    const { productId, quantity = 1 } = req.body;
+    let cart = await Cart.findOne();
+    if (!cart) {
+      cart = new Cart();
+    }
+
+    // Check if item already exists in cart
+    const existingItem = cart.items.find(item => item.productId.toString() === productId);
+    
+    if (existingItem) {
+      existingItem.quantity += parseInt(quantity);
+    } else {
+      // Find product across all collections
+      const product = await findProductInCollections(productId);
+      if (!product) {
+        return res.status(404).json({ success: false, message: 'Product not found' });
+      }
+
+      cart.items.push({
+        productId: product._id,
+        name: product.name,
+        price: product.price,
+        image: product.image,
+        quantity: parseInt(quantity),
+        productType: product.constructor.modelName
+      });
+    }
+
+    // Calculate total
+    cart.total = cart.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    await cart.save();
+    res.json({ success: true, cart });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+// View Cart route with explicit data passing
+app.get('/basket', async (req, res) => {
+  try {
+    const cart = await Cart.findOne();
+    const cartData = {
+      items: cart ? cart.items : [],
+      total: cart ? cart.total : 0,
+      itemCount: cart ? cart.items.reduce((sum, item) => sum + item.quantity, 0) : 0
+    };
+    res.render('basket', { cart: cartData });
+  } catch (error) {
+    console.log('Error fetching cart:', error);
+    res.render('basket', { cart: { items: [], total: 0, itemCount: 0 } });
+  }
+});
+
+async function findProductInCollections(productId) {
+  const collections = [Product, Cake, Pie, Pastery, Dessert];
+  for (const Collection of collections) {
+    const product = await Collection.findById(productId);
+    if (product) return product;
+  }
+  return null;
+}
+
+app.put('/update-cart', async (req, res) => {
+  try {
+    const { productId, quantity } = req.body;
+    let cart = await Cart.findOne();
+    
+    if (!cart) {
+      return res.status(404).json({ success: false, message: 'Cart not found' });
+    }
+
+    const itemIndex = cart.items.findIndex(item => item.productId.toString() === productId);
+    
+    if (itemIndex > -1) {
+      if (quantity <= 0) {
+        cart.items.splice(itemIndex, 1);
+      } else {
+        cart.items[itemIndex].quantity = quantity;
+      }
+      
+      cart.total = cart.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      await cart.save();
+      res.json({ success: true, cart });
+    } else {
+      res.status(404).json({ success: false, message: 'Item not found in cart' });
+    }
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});

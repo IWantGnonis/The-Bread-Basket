@@ -1,6 +1,11 @@
 gsap.registerPlugin(ScrollToPlugin);
 gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(CSSRulePlugin)
 
+    let image = document.getElementById("image");
+    let container = document.querySelector(".contain");
+    let imageReveal = CSSRulePlugin.getRule(".img-container:after");
+    let imageReveal1 = CSSRulePlugin.getRule(".img-container1:after");
 
 const btn = document.querySelectorAll("#btn");
 
@@ -15,23 +20,11 @@ btn.forEach((btn,idx)=>{
     });
 });
 
-  gsap.from(".title",{
-    opacity:0,
-    duration:2,
-    delay:1
-})
 
-
-gsap.from("#navbar",{
-    opacity:0,
-    duration:2,
-    delay:1.9
-})
-
-gsap.to(".image-c-1",{
-    y:70,
+gsap.to("#image",{
+    y:50,
     scrollTrigger:{
-        trigger:"#Section1",
+        trigger:"#Section2",
         scroller:"body",
         start:"top 50%",
         end:"bottom 50%",
@@ -61,42 +54,65 @@ gsap.from(".grandbox",{
     }
   })
 
-var tl=gsap.timeline()
-tl.from(".shop-text",{
-    y:145,
-    duration:2,
-    delay:2.3
-})
 
-tl.from("#btn",{
-    opacity:0,
-    duration:2,
-})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var tl=gsap.timeline()
+
+
 
 tl.from(".s-line",{
     x:-1490,
-    duration:2,
+    duration:1,
 })
+tl.to(".contain", 0, { css: { visibility: "visible" } });
+// Animate the mask from full width to 0%, revealing the image from left to right
+tl.to(imageReveal, 0.5, { width: "0%", ease: "power2.inOut" });
 
-tl.from(".image-c-1",{
-    width:"0",
-    duration:2,
-})
 
-tl.from(".title-font",{
+gsap.from(".title-font",{
     x:300,
-    duration:2,
+    duration:1,
 })
 
-tl.from(".locate",{
+gsap.from(".locate",{
     opacity:0,
-    duration:2,
+    duration:1,
 })
 
 
-tl.from(".time",{
+gsap.from(".time",{
     opacity:0,
-    duration:2,
+    duration:1,
 })
 
 
@@ -108,23 +124,23 @@ tl.from(".s-line2",{
 
 tl.from(".image-c-2",{
     width:"0",
-    duration:2,
+    duration:0.5,
 })
 
 tl.from(".title-font1",{
     x:300,
-    duration:2,
+    duration:1,
 })
 
 tl.from(".locate1",{
     opacity:0,
-    duration:2,
+    duration:1,
 })
 
 
 tl.from(".time1",{
     opacity:0,
-    duration:2,
+    duration:1,
 })
 
 tl.from(".s-line3",{

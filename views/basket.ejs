@@ -1,201 +1,43 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
-    <link rel="stylesheet" href="/basket/basket.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="overflow-x-hidden">
+<body class="bg-gray-100">
 
-    <div class="page1 w-screen h-fit flex flex-col select-none">
-        <div class="flex select-none justify-between items-center gap-4 md:flex-row md:items-start md:gap-8 lg:gap-12 p-5">
-            <div id="navbar" class="flex flex-col gap-4 md:flex-row md:items-center">
-              <ul class="flex gap-8">
-                
-                <span class="hover-animation"><form action="/about" method="post"><button>ABOUT</button></form></span>
-                <span class="hover-animation"><form action="/shop" method="get"><button>SHOP</button></form></span>
-                <span class="hover-animation"><form action="/stores" method="post"><button>STORES</button></form></span>
-              </ul>
-            </div>
-          
-            <div class="flex flex-col items-center gap-2 md:flex-row md:gap-4 lg:gap-8">
-              <button formaction="/home" formmethod="post">
-                <div class="title">
-                  <h3 class="text-3xl font-bold">THE BREAD</h3>
-                  <div class="text-3xl font-bold">BASKET</div>
-                </div>  
-              </button>
-            </div>
-          
-            <div id="navbar" class="flex flex-col gap-4 md:flex-row md:items-center justify-end">
-              <ul class="flex gap-8 ">
-                <li class="hover-animation"><form action="/basket" method="get"><button>BASKET</button></form></li>
-                <li class="hover-animation"onclick="openForm()">LOGIN</li>
-                <!-- hover Login Page -->
-                <div id="myForm" class="form-container hidden  rounded-xl select-none my-14  mx-36 ">
-                  <div class=" z-10 absolute w-full flex justify-end "><span onclick="close_Form()" class="material-symbols-outlined close-btn rounded-md text-3xl px-3 py-2">close</span></div>
-                  <div class="pl-16 w-3/6 h-full">
-                    <div class="flex flex-col items-center gap-2 md:flex-row md:gap-4 lg:gap-8">
-                        <a href="/home">
-                          <div class="title">
-                            <h3 class="text-3xl font-bold">THE BREAD</h3>
-                            <div class="text-3xl font-bold">BASKET</div>
-                          </div>  
-                        </a>
-                      </div>
-                      <div class="log font-extralight pl-4 pt-5 text-4xl">
-                          <h1>LOGIN</h1>
-                      </div>
-                      <div class="text-log ml-4 mt-2 text-xl">
-                          Sign in with your email address and Password
-                      </div>
-                      <form>
-                          <div class="ml-4 mt-16">
-                              <input type="email" placeholder="Email address" class="border-none w-52 bg-transparent placeholder:text-inherit outline-none">
-                              <div class="email1-line mt-2 h-px rounded-xl w-60"></div>
-                          </div>
-                          <div class="ml-4 mt-5">
-                              <input type="password" placeholder="Password" class="border-none w-52 bg-transparent placeholder:text-inherit outline-none">
-                              <div class="email1-line mt-2 h-px rounded-xl w-60"></div>
-                          </div>
-                          <div class=" ml-4 mt-5 ">
-                              <button class="logbtn px-14 text-center py-2 rounded-xl">Login</button>
-                          </div>
-                      </form>
-                  </div>
-              </div>
+  <div class="container mx-auto mt-10">
+    <h1 class="text-3xl font-bold text-center mb-8">Your Shopping Cart</h1>
+    
+    <% if (cart && cart.items.length > 0) { %>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <% cart.items.forEach(item => { %>
+          <div class="bg-white p-6 rounded-lg shadow-lg">
+            <img src="<%= item.productId.image %>" alt="<%= item.productId.name %>" class="w-full h-40 object-cover mb-4">
+            <h3 class="text-xl font-semibold mb-2"><%= item.productId.name %></h3>
+            <p class="text-gray-600">Price: $<%= item.productId.price %></p>
+            <p class="text-gray-600">Quantity: <%= item.quantity %></p>
 
-
-
-              </ul>
+            <!-- You can add functionality to remove or update quantity here -->
+            <div class="mt-4">
+              <button class="bg-red-500 text-white px-4 py-2 rounded">Remove</button>
+              <button class="bg-blue-500 text-white px-4 py-2 rounded ml-2">Update Quantity</button>
             </div>
           </div>
-    </div>
-
-
-
-<!-- Basket -->
-
-
-
-
-
-
-
-
-
-<section class="basket-section w-full h-full select-none">
-        
-    <div class="basket-container flex flex-row object-cover">
-        <div class="basket-cart ml-10  h-max">
-                <div class="ml-10 flex flex-row justify-between">
-                    <div>
-                        <h1 class="text-bas text-6xl">Basket</h1>
-                    </div>
-                    <div>
-                        <h1 class="price-t pt-6 pr-6 text-2xl">Price</h1>
-                    </div>
-                </div>
-
-
-                <div class="s-line flex justify-center">
-                    <div class="l-line"></div>
-                </div>
-                
-                <!--------------------------------------------------- Main list  ------------------------------------------------------->
-                <% if (cart && cart.items && cart.items.length > 0) { %>
-                    <% cart.items.forEach(item => { %>
-                        <% if (item.productId) { %>
-                            <div class="list w-full ml-10 flex-row flex">
-                                <div class="list-img">
-                                    <img class="w-48 h-48 my-5 " src="<%= item.productId.image %>" alt=""/>
-                                </div>
-                                <div>
-                                    <div class="tp justify-between flex flex-row ">
-                                        <h1 class="cart-item-title text-4xl pt-4 pl-4 pb-4"><%= item.productId.name %></h1>
-                                        <h1 class="text-2xl pt-4 ">$<%= item.productId.price %></h1>
-                                    </div>
-                                    <div class="text-p pl-4 break-words">
-                                        <p><%= item.productId.desc %></p>
-                                    </div>
-                                    <div class="pl-4 pt-4 flex flex-row">
-                                        <h1 class="shadow-lg w-min h-min">Qty:</h1>
-                                        <select class="dropd shadow-lg border-none outline-none">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                        </select>
-                                        <div class="pl-4 text-red-500">
-                                            <button formaction="" class="btn-danger">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        <% } else { %>
-                            <p>Product not found</p>
-                        <% } %>
-                    <% }); %>
-                <% } else { %>
-                    <p class="m-10 text-2xl">Your cart is empty</p>
-                <% } %>
-                <div class="s-line flex justify-center">
-                    <div class="l-line"></div>
-                </div>
-            </div>
-
-                
-            <div class="payout ml-10 flex items-start justify-evenly flex-col">
-                <div class="flex w-full justify-center flex-row text-2xl">
-                    <div>
-
-                        <!-- backend -->
-                    </div>
-                </div>
-                <div class="w-full h-9 flex justify-center ">
-                    <button id="btn" class="payout-btn rounded-xl w-64 h-9 shadow-sm">Proceed to Buy</button>
-                </div>
-            </div>
-    </div>
-    </section>
-    <script src="/basket/addtocart.js"async></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- <div class="justify-center flex">
-            <div class="collection-image flex">
-                <div class="image-container rounded-3xl flex border border-black flex-col ">
-                    <img class="h-96 w-80 rounded-t-3xl" src="../Images/Breads/ilham-putra-dS6aOF2tm0I-unsplash.jpg" alt="">  
-                    <div class="flex flex-row justify-between">
-                        <div class="w-36 h-min flex-col pl-3 pt-2 ">
-                            <h1>Cinnamon Bun</h1>
-                            <h1>$17.5</h1>
-                        </div> 
-                        <div class="flex items-center">
-                            <button><img src="../Images/picnic-basket.png" class="w-8 mr-3 mt-2"/></button>
-                        </div>
-                    </div>
-                </div>
+        <% }) %>
+      </div>
+      
+      <div class="mt-6 text-right">
+        <a href="/" class="bg-green-500 text-white px-6 py-3 rounded">Proceed to Checkout</a>
+      </div>
     
-            </div>
-        </div> -->
+    <% } else { %>
+      <p class="text-center text-lg text-gray-700">Your cart is empty.</p>
+    <% } %>
+
+  </div>
+
 </body>
 </html>

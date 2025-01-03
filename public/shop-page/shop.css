@@ -47,18 +47,6 @@ body{
 
 }
 
-.tagline{
-    font-family: brand;
-    align-items: center;
-
-}
-.scroll-down{
-    color: #543310;
-}
-#navbar{
-    color: #543310;
-}
-
 
 .hover-animation {
     display: inline-block;
@@ -88,60 +76,267 @@ body{
 
 
 
-/* Login page Css */
 
-.form-container{
-  background-color: #543310;
-  width: 80%;
-  height: 600px;
-  position: fixed;
-  z-index: 9;
+
+
+
+
+
+
+
+
+
+
+
+
+/* Navbar */
+
+
+/*Login Button */
+
+
+
+.navigation-top-button {
+  background: #543310;
+  color: #F8F4E1;
+  border: none;
+  outline: none;
+  height: 3vw;
+  width: 10vw;
+  border-radius: 0;
+  overflow: hidden;
+  transform: scaleX(1);
+  transition: transform 4.5s cubic-bezier(.4,0,0,1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: all;
+}
+
+.navigation-top-button:after {
+  content: "";
+  position: absolute;
   left: 0;
-  right: 0;
-  top: 0;
   bottom: 0;
-  background-image: url(../Images/bread-l.jpg);
-  background-size:100% ;
-  color: #F8F4E1;
+  background: #b28571;
+  transition: transform .5s cubic-bezier(.4,0,0,1),border-radius .5s cubic-bezier(.4,0,0,1);
+  width: 100%;
+  height: 100%;
+  border-radius: 50% 50% 0 0;
+  transform: translateY(101%)
 }
 
-.title1{
-  font-family: brand;
-  text-align: center;
-  color: #F8F4E1;
+.navigation-top-button:hover:after {
+  transform: translateY(0);
+  border-radius: 0
+  
+}
 
-}
-.email1-line{
-
-  background-color: #F8F4E1;
-}
-.text-log{
+.navigation-top-button span {
+  display: inline-block;
+  font-size: 1.5vw;
+  font-weight: 400;
+  position: relative;
   color: #F8F4E1;
+  transition: color 0.5s cubic-bezier(.2,0,0,1);
 }
-body{
-  background-color: #F8F4E1;
-}
-.btn{
+
+.navigation-top-button span:after {
+  width: 100%;
+  height: 100%;
+  transition: transform .5s cubic-bezier(.2,0,0,1);
+  content: attr(data-text);
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  z-index: 1;
+  transform: translate(-50%,100%);
   color: #543310;
-}
-.logbtn{
-  background-color: #AF8F6F;
-  color: #F8F4E1;
-}
-.close-btn:hover{
-  transition: 1s;
-  background-color: #AF8F6F;
+  font-size: 1.5vw;
+  font-weight: 700;
 }
 
+.navigation-top-button:hover span:after {
+  transform: translate(-50%);
+}
+
+.navigation-top-button:focus {
+  outline: none
+}
 
 
+@media (max-width: 768px) {
+.navigation-top-button {
+  height: auto;
+  width: auto;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+} 
 
-.title{
-    font-family: brand;
-    text-align: center;
-    justify-content: center;
+
+.navbar{
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+background: none;
+border: none;
+cursor: pointer;
+padding: 0;
+position: fixed;
+top: 20px;
+left: 20px;
+z-index: 1000;
+}
+
+/* Navbar-section */
+.navbar-section{
+background-color: #F8F4E1;
 
 }
+.navbar-section.active{
+border: none;
+border-width: none;
+}
+
+
+
+
+
+
+
+
+
+
+.hamburger-button{
+background-color:#543310;
+border: none;
+outline: none;
+cursor: pointer;
+width: 75px;
+height: 75px;
+border-radius: 50%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+.hamburger-icon{
+background-color: #F8F4E1;
+width: 50px;
+height: 2.4px;
+border-radius: 5px;
+transition: transform 0.3s ease, opacity 0.3s ease;
+
+}
+.hamburger-icon:nth-child(1) {
+margin-bottom : 10px;
+}
+
+.hamburger-button.active .hamburger-icon:nth-child(1) {
+transform: rotate(45deg) translate(4.8px, 5px); /* Rotate to form the top part of the 'X' */
+}
+
+.hamburger-button.active .hamburger-icon:nth-child(2) {
+transform: rotate(-45deg) translate(3.5px, -4.5px); /* Rotate to form the bottom part of the 'X' */
+}
+
+.menu-overlay {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: #F8F4E1;
+z-index: 40; /* Adjusted to be below navbar z-index of 50 */
+opacity: 0;
+visibility: hidden;
+transition: opacity 0.5s ease, visibility 0.5s ease;
+pointer-events: none;
+}
+
+.menu-overlay.active {
+opacity: 1;
+visibility: visible;
+pointer-events: all;
+}
+.menu-content {
+height: 100%;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 0 8rem;
+
+}
+
+.menu-title {
+font-family: brand;
+color: #543310;
+text-align: center;
+}
+
+.menu-title h1 {
+font-size: 4rem;
+font-weight: bold;
+line-height: 1.1;
+}
+.menu-list {
+list-style: none;
+text-align: center;
+padding-top: 6rem;
+}
+.menu-list li a {
+font-family: brand;
+font-size: 5rem;
+color: #543310;
+text-decoration: none;
+position: relative;
+transition: all 0.3s ease;
+}
+
+.menu-list li a:hover {
+color: #b28571;
+}
+
+.menu-list li a::after {
+content: '';
+position: absolute;
+width: 0;
+height: 2px;
+bottom: -5px;
+left: 50%;
+background-color: #543310;
+transition: all 0.3s ease;
+}
+
+.menu-list li a:hover::after {
+width: 100%;
+left: 0;
+}
+
+.title.active{
+display: none;
+}
+.navbar.active{
+border: none;
+}
+
+
+
+/* NAVBAR END */
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

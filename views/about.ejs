@@ -7,71 +7,75 @@
     <link rel="stylesheet" href="/about-page/about.css">
 </head>
 <body class="overflow-x-hidden overflow-auto">
-
-  <div class=" page1 w-100% h-100% flex flex-col">
-    <div class="flex select-none justify-between items-center gap-4 md:flex-row md:items-start md:gap-8 lg:gap-12 p-5">
-      <div id="navbar" class="flex flex-col gap-4 md:flex-row md:items-center">
-        <ul class="flex gap-8">
-          
-          <span class="hover-animation"><form action="/about" method="post"><button>ABOUT</button></form></span>
-          <span class="hover-animation"><form action="/shop" method="get"><button>SHOP</button></form></span>
-          <span class="hover-animation"><form action="/stores" method="post"><button>STORES</button></form></span>
-        </ul>
-      </div>
-    
-      <div class="flex flex-col items-center gap-2 md:flex-row md:gap-4 lg:gap-8">
-        <button formaction="/home" formmethod="post">
-          <div class="title">
-            <h3 class="text-3xl font-bold">THE BREAD</h3>
-            <div class="text-3xl font-bold">BASKET</div>
-          </div>  
-        </button>
-      </div>
-    
-      <div id="navbar" class="flex flex-col gap-4 md:flex-row md:items-center justify-end">
-        <ul class="flex gap-8 ">
-          <li class="hover-animation"><form action="/basket" method="get"><button>BASKET</button></form></li>
-          <li class="hover-animation"onclick="openForm()">LOGIN</li>
-          <!-- hover Login Page -->
-          <div id="myForm" class="form-container hidden  rounded-xl select-none my-14  mx-36 ">
-            <div class=" z-10 absolute w-full flex justify-end "><span onclick="close_Form()" class="material-symbols-outlined close-btn rounded-md text-3xl px-3 py-2">close</span></div>
-            <div class="pl-16 w-3/6 h-full">
-              <div class="flex flex-col items-center gap-2 md:flex-row md:gap-4 lg:gap-8">
-                <a href="/home">
-                  <div class="title">
-                    <h3 class="text-3xl font-bold">THE BREAD</h3>
-                    <div class="text-3xl font-bold">BASKET</div>
-                  </div>  
-                </a>
-              </div>
-                <div class="log font-extralight pl-4 pt-5 text-4xl">
-                    <h1>LOGIN</h1>
-                </div>
-                <div class="text-log ml-4 mt-2 text-xl">
-                    Sign in with your email address and Password
-                </div>
-                <form>
-                    <div class="ml-4 mt-16">
-                        <input type="email" placeholder="Email address" class="border-none w-52 bg-transparent placeholder:text-inherit outline-none">
-                        <div class="email1-line mt-2 h-px rounded-xl w-60"></div>
-                    </div>
-                    <div class="ml-4 mt-5">
-                        <input type="password" placeholder="Password" class="border-none w-52 bg-transparent placeholder:text-inherit outline-none">
-                        <div class="email1-line mt-2 h-px rounded-xl w-60"></div>
-                    </div>
-                    <div class=" ml-4 mt-5 ">
-                        <button class="logbtn px-14 text-center py-2 rounded-xl">Login</button>
-                    </div>
-                </form>
-            </div>
+  <div id="mask"></div>
+<section id="content" class="hidden">
+  <!-- Navbar -->
+  <nav class="navbar-section border-b-2 flex items-center justify-between w-full px-8 py-4 fixed top-0 z-50">
+    <div class="flex items-center">
+      <button class="hamburger-button">
+        <span class="hamburger-icon"></span>
+        <span class="hamburger-icon"></span>
+      </button>
+    </div>
+    <div class="pl-[60px] flex justify-center">
+      <div class="logo-text">
+        <div class="title font-bold text-4xl">
+          <h1>The Bread<br> Basket</h1>
         </div>
-
-
-
-        </ul>
       </div>
     </div>
-    
+    <div class="flex items-center">
+      <button class="navigation-top-button">
+        <span data-text="LOGIN">LOGIN</span>
+      </button>
+    </div>
+ </nav>
+
+
+  
+
+<!-- Add this right after your hamburger button -->
+
+<div class="menu-overlay ">
+  <div class="menu-content">
+    <nav class="menu-nav">
+      <ul class="menu-list">
+        <li><a href="/">HOME</a></li>
+        <li><a href="/about">ABOUT</a></li>
+        <li><a href="/shop">SHOP</a></li>
+        <li><a href="/stores">STORES</a></li>
+      </ul>
+    </nav>
+    <div class="menu-title">
+      <h1>THE BREAD<br>BASKET</h1>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+  const hamburgerBtn = document.querySelector('.hamburger-button');
+  const menuOverlay = document.querySelector('.menu-overlay');
+  const navbar = document.querySelector('.navbar-section');
+  const title = document.querySelector('.title');
+
+  if (hamburgerBtn && menuOverlay) {
+    hamburgerBtn.addEventListener('click', () => {
+      console.log('Button clicked');  
+      hamburgerBtn.classList.toggle('active');
+      menuOverlay.classList.toggle('active');
+      title.classList.toggle('active');
+      navbar.classList.toggle('active');
+    });
+  }
+});
+
+</script>
+<!-- Navbar ENds -->
+
+   
     
 
 
@@ -80,7 +84,7 @@
 
 
 
-<div class=" body-text w-screen h-fit flex flex-col text-6xl justify-center pt-20 items-center ">
+<div class=" body-text mt-28 w-screen h-fit flex flex-col text-6xl justify-center pt-20 items-center ">
       <div class="text-1 w-3/4 h-fit pr-40">
         On a restaurant table, a humble bread basket might seem like a simple accessory.
       </div>
@@ -89,12 +93,11 @@
         But woven within its purpose lies a deeper story. It's the vessel that tempts with warm rolls and crusty baguettes, the initiator of pre-dinner conversation as hands reach for shared slices. 
       </div>
       <div class="text-1 w-3/4 h-fit pr-40">
-        The bread basket is a silent invitation to gather, to break bread together, and savor the simple pleasure of a meal about to begin.
+     
       </div>
       </h1>
       <!-- Founder -->
       <div class="flex w-screen justify-end">
-        <img class="founder mr-10 shadow-black shadow-2xl" src="../Images/founder.png" alt=""/>
       </div>
       
     </div>
@@ -102,10 +105,10 @@
   </div>
   
 </div>
+</section>
   
   <!-- Footer -->
   
-  <!-- footer -->
      <footer class="grandmain pt-32">
        <div class="grandbox">
          
@@ -187,7 +190,6 @@
       </div>
      </footer>
 
-
  
      
      
@@ -197,5 +199,18 @@
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                 <script src="/about-page/about.js"></script>
+                <script>
+                  document.addEventListener("DOMContentLoaded", () => {
+  const mask = document.getElementById("mask");
+  const content = document.getElementById("content");
+
+  // Wait for the mask animation to complete (duration matches CSS animation time)
+  mask.addEventListener("animationend", () => {
+    mask.style.display = "none"; // Remove mask from view
+    content.classList.remove("hidden"); // Show the content
+  });
+});
+
+                </script>
 </body>
 </html>
